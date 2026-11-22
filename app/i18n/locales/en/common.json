@@ -1,0 +1,36 @@
+{
+    "siteTitle": "Advertisements Portal for {{name}}",
+    "advertisements": "Advertisements",
+    "pageTitle": "Showing {{count}} pages",
+    "failed": "Failed to load ads.",
+    "loading": "Loading ads...",
+    "signIn": "Sign in",
+    "noAds": "No ads available",
+    "backToAds": "Back to Advertisements",
+    "adsTable": {
+        "id": "ID",
+        "name": "Name",
+        "address": "Address",
+        "price": "Price",
+        "contactEmail": "Contact Email",
+        "contactPhone": "Contact Phone",
+        "createdTime": "Created Time",
+        "notAvailable": "Not Available"
+    },
+    "details": {
+        "title": "Advertise details",
+        "backToAds": "Back to Advertisements",
+        "free": "Free",
+        "posted": "Posted",
+        "adId": "Advertisement #{{id}}",
+        "description": "Description",
+        "price": "Price",
+        "contactEmail": "Contact Email",
+        "contactPhone": "Contact Phone",
+        "createdTime": "Created Time",
+        "contactForPrice": "Contact for price",
+        "noDescription": "No description provided.",
+        "failedToLoadAdvertisement": "Failed to load advertisement.",
+        "loadingAdvertisement": "Loading advertisement..."
+    }
+}

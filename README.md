@@ -34,3 +34,18 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## BFF sign-in configuration
+
+The browser starts sign-in at `/api/auth/login`. The BFF performs the authorization-code exchange and stores the access and refresh tokens in `auth_tokens`; the browser receives only an HttpOnly `session_id` cookie.
+
+Configure these server-side environment variables for the Next.js app:
+
+```env
+OIDC_AUTHORITY=http://localhost:88
+OIDC_CLIENT_ID=nextjs-project
+OIDC_REDIRECT_URI=http://localhost:3001/api/auth/callback
+OIDC_SCOPE=openid profile email api.read
+```
+
+`OIDC_REDIRECT_URI` must exactly match a URI allowed for `nextjs-project` in the IDP. The local IDP is configured for `http://localhost:3001/api/auth/callback` in `module/oidc-provider.ts`. Use HTTPS and the matching public callback URI outside local development.

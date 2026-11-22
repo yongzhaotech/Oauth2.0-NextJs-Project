@@ -1,0 +1,36 @@
+{
+    "siteTitle": "Portail des annonces pour {{name}}",
+    "advertisements": "Annonces",
+    "pageTitle": "Affichage de {{count}} pages",
+    "failed": "Échec du chargement des annonces.",
+    "loading": "Chargement des annonces...",
+    "signIn": "Se connecter",
+    "noAds": "Aucune annonce disponible",
+    "backToAds": "Retour aux annonces",
+    "adsTable": {
+        "id": "ID",
+        "name": "Nom",
+        "address": "Adresse",
+        "price": "Prix",
+        "contactEmail": "Email de contact",
+        "contactPhone": "Téléphone de contact",
+        "createdTime": "Date de création",
+        "notAvailable": "Non disponible"
+    },
+    "details": {
+        "title": "Détails de l'annonce",
+        "backToAds": "Retour aux annonces",
+        "adId": "Annonce #{{id}}",
+        "free": "Gratuit",
+        "posted": "Publié",
+        "contactForPrice": "Contacter pour le prix",
+        "description": "Description",
+        "noDescription": "Aucune description fournie.",
+        "price": "Prix",
+        "contactEmail": "Email de contact",
+        "contactPhone": "Téléphone de contact",
+        "createdTime": "Date de création",
+        "failedToLoadAdvertisement": "Échec du chargement de l'annonce.",
+        "loadingAdvertisement": "Chargement de l'annonce..."
+    }
+}

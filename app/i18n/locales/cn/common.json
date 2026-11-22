@@ -1,0 +1,36 @@
+{
+    "siteTitle": "{{name}} 的广告门户",
+    "advertisements": "广告",
+    "pageTitle": "显示 {{count}} 页",
+    "failed": "加载广告失败。",
+    "loading": "正在加载广告...",
+    "signIn": "登录",
+    "noAds": "没有可用的广告",
+    "backToAds": "返回广告",
+    "adsTable": {
+        "id": "ID",
+        "name": "名称",
+        "address": "地址",
+        "price": "价格",
+        "contactEmail": "联系邮箱",
+        "contactPhone": "联系电话",
+        "createdTime": "创建时间",
+        "notAvailable": "不可用"
+    },
+    "details": {
+        "title": "广告详情",
+        "backToAds": "返回广告",
+        "adId": "广告 #{{id}}",
+        "free": "免费",
+        "posted": "已发布",
+        "contactForPrice": "联系以获取价格",
+        "description": "描述",
+        "noDescription": "未提供描述。",
+        "price": "价格",
+        "contactEmail": "联系邮箱",
+        "contactPhone": "联系电话",
+        "createdTime": "创建时间",
+        "failedToLoadAdvertisement": "加载广告失败。",
+        "loadingAdvertisement": "正在加载广告..."
+    }
+}
