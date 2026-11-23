@@ -15,7 +15,8 @@
         "contactEmail": "Email de contact",
         "contactPhone": "Téléphone de contact",
         "createdTime": "Date de création",
-        "notAvailable": "Non disponible"
+        "notAvailable": "Non disponible",
+        "pageSize": "Taille de page {{size}}"
     },
     "details": {
         "title": "Détails de l'annonce",

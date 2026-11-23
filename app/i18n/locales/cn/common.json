@@ -15,7 +15,8 @@
         "contactEmail": "联系邮箱",
         "contactPhone": "联系电话",
         "createdTime": "创建时间",
-        "notAvailable": "不可用"
+        "notAvailable": "不可用",
+        "pageSize": "每页 {{size}} 条"
     },
     "details": {
         "title": "广告详情",

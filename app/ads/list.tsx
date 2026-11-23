@@ -5,6 +5,7 @@ import { useT } from "next-i18next/client";
 import Link from "next/link";
 import type { AdSummary } from "@/utils/http";
 import { pagination } from "@/utils/helper";
+import { useSorting } from "@/hooks/ad-hook";
 
 type ListProps = {
     ads: AdSummary[];
@@ -18,8 +19,13 @@ const Header = ({ nums }: { nums: number }) => {
 
 export const AdList = ({ ads: list }: ListProps) => {
     const { t } = useT("common");
+    const { sortedData, sortData } = useSorting(list);
     const [pageNumber, setPageNumber] = useState(1);
-    const paginatedAds = useMemo(() => pagination<AdSummary>(list), [list]);
+    const [pageSize, setPageSize] = useState(5);
+    const paginatedAds = useMemo(
+        () => pagination<AdSummary>(sortedData, pageSize),
+        [sortedData, pageSize]
+    );
     const ads = paginatedAds[pageNumber] ?? [];
 
     return (
@@ -28,11 +34,25 @@ export const AdList = ({ ads: list }: ListProps) => {
                 <Header nums={Object.keys(paginatedAds).length} />
             </h3>
             <nav className="flex justify-center gap-1 mb-4">
+                <select
+                    value={pageSize}
+                    onChange={(e) => {
+                        setPageSize(Number(e.target.value));
+                        setPageNumber(1);
+                    }}
+                    className="rounded border px-3 py-1 cursor-pointer"
+                >
+                    {[5, 10, 15, 20, 25].map((size) => (
+                        <option key={size} value={size}>
+                            {t("adsTable.pageSize", { size })}
+                        </option>
+                    ))}
+                </select>
                 {Object.keys(paginatedAds).map((page) => (
                     <button
                         key={page}
                         onClick={() => setPageNumber(Number(page))}
-                        className={`rounded border px-3 py-1 ${pageNumber === Number(page) ? "bg-gray-200" : ""}`}
+                        className={`rounded cursor-pointer border px-3 py-1 ${pageNumber === Number(page) ? "bg-gray-200" : ""}`}
                         disabled={pageNumber === Number(page)}
                     >
                         {page}
@@ -46,19 +66,31 @@ export const AdList = ({ ads: list }: ListProps) => {
                             <th className="border border-gray-300 px-2 py-2 text-left">
                                 {t("adsTable.id")}
                             </th>
-                            <th className="border border-gray-300 px-2 py-2 text-left">
+                            <th
+                                className="cursor-pointer underline border border-gray-300 px-2 py-2 text-left"
+                                onClick={() => sortData("name")}
+                            >
                                 {t("adsTable.name")}
                             </th>
                             <th className="border border-gray-300 px-2 py-2 text-left">
                                 {t("adsTable.address")}
                             </th>
-                            <th className="border border-gray-300 px-2 py-2 text-left">
+                            <th
+                                className="cursor-pointer underline border border-gray-300 px-2 py-2 text-left"
+                                onClick={() => sortData("price")}
+                            >
                                 {t("adsTable.price")}
                             </th>
-                            <th className="border border-gray-300 px-2 py-2 text-left">
+                            <th
+                                className="cursor-pointer underline border border-gray-300 px-2 py-2 text-left"
+                                onClick={() => sortData("contact_email")}
+                            >
                                 {t("adsTable.contactEmail")}
                             </th>
-                            <th className="border border-gray-300 px-2 py-2 text-left">
+                            <th
+                                className="cursor-pointer underline border border-gray-300 px-2 py-2 text-left"
+                                onClick={() => sortData("contact_phone")}
+                            >
                                 {t("adsTable.contactPhone")}
                             </th>
                             <th className="border border-gray-300 px-2 py-2">
