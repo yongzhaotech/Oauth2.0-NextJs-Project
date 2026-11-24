@@ -5,7 +5,7 @@ import { Suspense, type ReactNode } from "react";
 import { Geist, Geist_Mono } from "next/font/google";
 import { connection } from "next/server";
 import "./globals.css";
-import { AppAuthProvider, LanguageSwitcher } from "./clients";
+import { AppAuthProvider, TopNavigation } from "./clients";
 import { getAccessTokenPayload } from "@/utils/auth";
 
 initServerI18next(i18nConfig);
@@ -40,7 +40,7 @@ async function RequestContent({ children }: { children: ReactNode }) {
                 <h1 className="text-xl font-semibold">
                     {t("siteTitle", { name })}
                 </h1>
-                <LanguageSwitcher />
+                <TopNavigation />
             </header>
             <AppAuthProvider isAuthenticated={Boolean(accessTokenPayload)}>
                 {children}

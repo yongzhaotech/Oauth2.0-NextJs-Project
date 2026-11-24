@@ -94,7 +94,7 @@ export const AdList = ({ ads: list }: ListProps) => {
                                 {t("adsTable.contactPhone")}
                             </th>
                             <th className="border border-gray-300 px-2 py-2">
-                                {t("adsTable.createdTime")}
+                                {t("adsTable.createTime")}
                             </th>
                         </tr>
                     </thead>

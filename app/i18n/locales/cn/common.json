@@ -7,6 +7,7 @@
     "signIn": "登录",
     "noAds": "没有可用的广告",
     "backToAds": "返回广告",
+    "notAllowed": "您无权访问此页面。",
     "adsTable": {
         "id": "ID",
         "name": "名称",
@@ -14,7 +15,7 @@
         "price": "价格",
         "contactEmail": "联系邮箱",
         "contactPhone": "联系电话",
-        "createdTime": "创建时间",
+        "createTime": "创建时间",
         "notAvailable": "不可用",
         "pageSize": "每页 {{size}} 条"
     },
@@ -30,8 +31,35 @@
         "price": "价格",
         "contactEmail": "联系邮箱",
         "contactPhone": "联系电话",
-        "createdTime": "创建时间",
+        "createTime": "创建时间",
         "failedToLoadAdvertisement": "加载广告失败。",
         "loadingAdvertisement": "正在加载广告..."
+    },
+    "usersTable": {
+        "id": "ID",
+        "firstName": "名",
+        "lastName": "姓",
+        "email": "邮箱",
+        "createTime": "创建时间",
+        "signinCount": "登录次数",
+        "notAvailable": "不可用",
+        "pageSize": "每页 {{size}} 用户",
+        "title": "用户"
+    },
+    "userDetails": {
+        "title": "用户详情",
+        "backToUsers": "返回用户",
+        "userId": "用户 #{{id}}",
+        "firstName": "名",
+        "lastName": "姓",
+        "email": "邮箱",
+        "createTime": "创建时间",
+        "signinCount": "登录次数",
+        "failedToLoadUser": "加载用户失败。",
+        "loadingUser": "正在加载用户..."
+    },
+    "navs": {
+        "home": "首页",
+        "users": "用户"
     }
 }
