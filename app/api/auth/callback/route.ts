@@ -6,7 +6,9 @@ import { getCallbackUri, getOidcSettings, validateIdToken } from "@/utils/oidc";
 const transactionCookieNames = ["oidc_state", "oidc_nonce", "oidc_code_verifier"] as const;
 
 const finish = (request: NextRequest, destination: string, status?: number) => {
-    const response = NextResponse.redirect(new URL(destination, request.url), status);
+    // Use the public callback origin. Behind the local reverse proxy, request.url
+    // can expose Next.js's internal https://localhost:3001 address.
+    const response = NextResponse.redirect(new URL(destination, getCallbackUri(request.url)), status);
     response.headers.set("Cache-Control", "no-store");
     response.headers.set("Pragma", "no-cache");
     for (const name of transactionCookieNames) {

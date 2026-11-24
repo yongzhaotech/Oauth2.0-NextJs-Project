@@ -49,3 +49,43 @@ OIDC_SCOPE=openid profile email api.read
 ```
 
 `OIDC_REDIRECT_URI` must exactly match a URI allowed for `nextjs-project` in the IDP. The local IDP is configured for `http://localhost:3001/api/auth/callback` in `module/oidc-provider.ts`. Use HTTPS and the matching public callback URI outside local development.
+
+nginx:
+
+
+# 1. Build your Next.js app
+npm run build
+
+# 2. Install PM2 globally and start Next.js on localhost:3000
+npm install -g pm2
+pm2 start npm --name "nextjs-project" -- start -- -H 127.0.0.1 -p 3001
+
+# 3. Save process list for server reboots
+pm2 save
+pm2 startup
+
+#####
+1. Delete the errored PM2 processes:bash
+pm2 delete all
+Use code with caution.
+2. Start Next.js directly using its JS binary (make sure you are inside ~/codes/apps/nextjs-project):bash
+pm2 start ./node_modules/next/dist/bin/next --name "nextjs-project" -- start -H 127.0.0.1 -p 3001
+
+#####
+cd C:\nginx
+
+# Test configuration for syntax errors
+.\nginx.exe -t
+
+# Start Nginx (runs in the background)
+start .\nginx.exe
+
+# Reload after editing nginx.conf
+.\nginx.exe -s reload
+
+# Stop Nginx cleanly
+.\nginx.exe -s quit
+
+
+# Verify Nginx is Running
+tasklist | grep -i nginx
