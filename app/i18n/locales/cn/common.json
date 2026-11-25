@@ -8,6 +8,7 @@
     "noAds": "没有可用的广告",
     "backToAds": "返回广告",
     "notAllowed": "您无权访问此页面。",
+    "pageSize": "每页 {{size}} 条",
     "adsTable": {
         "id": "ID",
         "name": "名称",

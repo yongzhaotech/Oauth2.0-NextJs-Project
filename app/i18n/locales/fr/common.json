@@ -8,6 +8,7 @@
     "noAds": "Aucune annonce disponible",
     "backToAds": "Retour aux annonces",
     "notAllowed": "Vous n'êtes pas autorisé à accéder à cette page.",
+    "pageSize": "Taille de page {{size}}",
     "adsTable": {
         "id": "ID",
         "name": "Nom",
