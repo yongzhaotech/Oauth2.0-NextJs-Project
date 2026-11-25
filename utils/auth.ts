@@ -2,7 +2,7 @@ import "server-only";
 import { randomUUID } from "node:crypto";
 import { cookies } from "next/headers";
 import { mysql } from "@/utils/mysql";
-import { getOidcSettings } from "@/utils/oidc";
+import { getOidcSettings, validateAccessToken } from "@/utils/oidc";
 
 export type Tokens = {
     access_token?: string;
@@ -214,4 +214,23 @@ export const getAccessTokenPayload = async (): Promise<AccessTokenPayload | null
     const accessToken = await getAccessToken();
     if (!accessToken) return null;
     return decodeAccessToken(accessToken);
+};
+
+export const getUserAccessLevel = async (): Promise<number | null> => {
+    const accessToken = await getAccessToken();
+    if (!accessToken) return null;
+
+    try {
+        const { clientId, metadata } = await getOidcSettings();
+        const claims = await validateAccessToken(accessToken, clientId, metadata);
+        if (typeof claims.access_level !== "string" || !/^(0|[1-9]\d*)$/.test(claims.access_level)) {
+            return null;
+        }
+
+        const accessLevel = Number(claims.access_level);
+        return Number.isSafeInteger(accessLevel) ? accessLevel : null;
+    } catch {
+        // Invalid tokens and verification failures must never grant access.
+        return null;
+    }
 };

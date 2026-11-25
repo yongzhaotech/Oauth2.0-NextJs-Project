@@ -7,6 +7,8 @@
     "signIn": "Se connecter",
     "noAds": "Aucune annonce disponible",
     "backToAds": "Retour aux annonces",
+    "notAllowed": "Vous n'êtes pas autorisé à accéder à cette page.",
+    "pageSize": "Taille de page {{size}}",
     "adsTable": {
         "id": "ID",
         "name": "Nom",
@@ -14,7 +16,7 @@
         "price": "Prix",
         "contactEmail": "Email de contact",
         "contactPhone": "Téléphone de contact",
-        "createdTime": "Date de création",
+        "createTime": "Date de création",
         "notAvailable": "Non disponible",
         "pageSize": "Taille de page {{size}}"
     },
@@ -30,8 +32,35 @@
         "price": "Prix",
         "contactEmail": "Email de contact",
         "contactPhone": "Téléphone de contact",
-        "createdTime": "Date de création",
+        "createTime": "Date de création",
         "failedToLoadAdvertisement": "Échec du chargement de l'annonce.",
         "loadingAdvertisement": "Chargement de l'annonce..."
+    },
+    "usersTable": {
+        "id": "ID",
+        "firstName": "Prénom",
+        "lastName": "Nom",
+        "email": "Email",
+        "createTime": "Date de création",
+        "signinCount": "Nombre de connexions",
+        "notAvailable": "Non disponible",
+        "pageSize": "{{size}} utilisateurs/page",
+        "title": "Utilisateurs"
+    },
+    "userDetails": {
+        "title": "Détails de l'utilisateur",
+        "backToUsers": "Retour aux utilisateurs",
+        "userId": "Utilisateur #{{id}}",
+        "firstName": "Prénom",
+        "lastName": "Nom",
+        "email": "Email",
+        "createTime": "Date de création",
+        "signinCount": "Nombre de connexions",
+        "failedToLoadUser": "Échec du chargement de l'utilisateur.",
+        "loadingUser": "Chargement de l'utilisateur..."
+    },
+    "navs": {
+        "home": "Accueil",
+        "users": "Utilisateurs"
     }
 }

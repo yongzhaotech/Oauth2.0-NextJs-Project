@@ -7,6 +7,8 @@
     "signIn": "Sign in",
     "noAds": "No ads available",
     "backToAds": "Back to Advertisements",
+    "notAllowed": "You are not allowed to access this page.",
+    "pageSize": "Page size {{size}}",
     "adsTable": {
         "id": "ID",
         "name": "Name",
@@ -14,7 +16,7 @@
         "price": "Price",
         "contactEmail": "Contact Email",
         "contactPhone": "Contact Phone",
-        "createdTime": "Created Time",
+        "createTime": "Created Time",
         "notAvailable": "Not Available",
         "pageSize": "Page size {{size}}"
     },
@@ -28,10 +30,37 @@
         "price": "Price",
         "contactEmail": "Contact Email",
         "contactPhone": "Contact Phone",
-        "createdTime": "Created Time",
+        "createTime": "Created Time",
         "contactForPrice": "Contact for price",
         "noDescription": "No description provided.",
         "failedToLoadAdvertisement": "Failed to load advertisement.",
         "loadingAdvertisement": "Loading advertisement..."
+    },
+    "usersTable": {
+        "id": "ID",
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "email": "Email",
+        "createTime": "Created Time",
+        "signinCount": "Sign-in Count",
+        "notAvailable": "Not Available",
+        "pageSize": "{{size}} users/page",
+        "title": "Users"
+    },
+    "userDetails": {
+        "title": "User details",
+        "backToUsers": "Back to Users",
+        "userId": "User #{{id}}",
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "email": "Email",
+        "createTime": "Created Time",
+        "signinCount": "Sign-in Count",
+        "failedToLoadUser": "Failed to load user.",
+        "loadingUser": "Loading user..."
+    },
+    "navs": {
+        "home": "Home",
+        "users": "Users"
     }
 }

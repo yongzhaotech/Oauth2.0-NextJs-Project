@@ -1,11 +1,10 @@
 "use client";
 
-import { useState, useMemo } from "react";
 import { useT } from "next-i18next/client";
 import Link from "next/link";
 import type { AdSummary } from "@/utils/http";
-import { pagination } from "@/utils/helper";
-import { useSorting } from "@/hooks/ad-hook";
+import { usePage } from "@/hooks/page-hook";
+import { Navigation } from "@/components/page-navigation";
 
 type ListProps = {
     ads: AdSummary[];
@@ -19,46 +18,28 @@ const Header = ({ nums }: { nums: number }) => {
 
 export const AdList = ({ ads: list }: ListProps) => {
     const { t } = useT("common");
-    const { sortedData, sortData } = useSorting(list);
-    const [pageNumber, setPageNumber] = useState(1);
-    const [pageSize, setPageSize] = useState(5);
-    const paginatedAds = useMemo(
-        () => pagination<AdSummary>(sortedData, pageSize),
-        [sortedData, pageSize]
-    );
-    const ads = paginatedAds[pageNumber] ?? [];
+    const {
+        data: ads,
+        pages,
+        pageNumber,
+        setPageNumber,
+        pageSize,
+        setPageSize,
+        sortData,
+    } = usePage(list);
 
     return (
         <>
             <h3 className="mb-4 text-xl font-semibold">
-                <Header nums={Object.keys(paginatedAds).length} />
+                <Header nums={pages.length} />
             </h3>
-            <nav className="flex justify-center gap-1 mb-4">
-                <select
-                    value={pageSize}
-                    onChange={(e) => {
-                        setPageSize(Number(e.target.value));
-                        setPageNumber(1);
-                    }}
-                    className="rounded border px-3 py-1 cursor-pointer"
-                >
-                    {[5, 10, 15, 20, 25].map((size) => (
-                        <option key={size} value={size}>
-                            {t("adsTable.pageSize", { size })}
-                        </option>
-                    ))}
-                </select>
-                {Object.keys(paginatedAds).map((page) => (
-                    <button
-                        key={page}
-                        onClick={() => setPageNumber(Number(page))}
-                        className={`rounded cursor-pointer border px-3 py-1 ${pageNumber === Number(page) ? "bg-gray-200" : ""}`}
-                        disabled={pageNumber === Number(page)}
-                    >
-                        {page}
-                    </button>
-                ))}
-            </nav>
+            <Navigation
+                pageNumber={pageNumber}
+                setPageNumber={setPageNumber}
+                pageSize={pageSize}
+                setPageSize={setPageSize}
+                pages={pages}
+            />
             <div className="overflow-x-auto">
                 <table className="w-full border-collapse border border-gray-300">
                     <thead>
@@ -93,8 +74,11 @@ export const AdList = ({ ads: list }: ListProps) => {
                             >
                                 {t("adsTable.contactPhone")}
                             </th>
-                            <th className="border border-gray-300 px-2 py-2">
-                                {t("adsTable.createdTime")}
+                            <th
+                                className="cursor-pointer underline border border-gray-300 px-2 py-2 text-left"
+                                onClick={() => sortData("create_time")}
+                            >
+                                {t("adsTable.createTime")}
                             </th>
                         </tr>
                     </thead>
