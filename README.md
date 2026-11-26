@@ -37,7 +37,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 ## BFF sign-in configuration
 
-The browser starts sign-in at `/api/auth/login`. The BFF performs the authorization-code exchange and stores the access and refresh tokens in `auth_tokens`; the browser receives only an HttpOnly `session_id` cookie.
+The browser starts sign-in at `/api/auth/login`. The BFF performs the authorization-code exchange and stores the access and refresh tokens in `auth_tokens` MySQL table; the browser receives only an opaque HttpOnly `session_id` cookie.
 
 Configure these server-side environment variables for the Next.js app:
 
