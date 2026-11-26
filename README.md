@@ -42,13 +42,14 @@ The browser starts sign-in at `/api/auth/login`. The BFF performs the authorizat
 Configure these server-side environment variables for the Next.js app:
 
 ```env
-OIDC_AUTHORITY=http://localhost:88
 OIDC_CLIENT_ID=nextjs-project
-OIDC_REDIRECT_URI=http://localhost:3001/api/auth/callback
-OIDC_SCOPE=openid profile email api.read
+OIDC_AUTHORITY=https://auth.localhost
+OIDC_REDIRECT_URI=https://app.localhost/api/auth/callback
+OIDC_RESPONSE_TYPE=code
+OIDC_SCOPE=openid profile email api.read access_level
 ```
 
-`OIDC_REDIRECT_URI` must exactly match a URI allowed for `nextjs-project` in the IDP. The local IDP is configured for `http://localhost:3001/api/auth/callback` in `module/oidc-provider.ts`. Use HTTPS and the matching public callback URI outside local development.
+`OIDC_REDIRECT_URI` must exactly match a URI allowed for `nextjs-project` in the IDP. The local IDP is configured for `https://app.localhost/api/auth/callback` in `module/oidc-provider.ts of NodeJs---esaleshome.com`. Use HTTPS and the matching public callback URI outside local development.
 
 nginx:
 
