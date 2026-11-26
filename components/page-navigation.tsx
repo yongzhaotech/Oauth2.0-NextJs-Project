@@ -27,7 +27,7 @@ export const Navigation = ({
                     setPageSize(Number(e.target.value));
                     setPageNumber(1);
                 }}
-                className="rounded border px-3 py-1 cursor-pointer"
+                className="rounded border px-2 py-1 cursor-pointer"
             >
                 {[5, 10, 15, 20, 25].map((size) => (
                     <option key={size} value={size}>
@@ -39,7 +39,7 @@ export const Navigation = ({
                 <button
                     key={page}
                     onClick={() => setPageNumber(Number(page))}
-                    className={`rounded cursor-pointer border px-3 py-1 ${pageNumber === Number(page) ? "bg-gray-200" : ""}`}
+                    className={`rounded border px-2 py-1 ${pageNumber === Number(page) ? "bg-gray-200" : "cursor-pointer"}`}
                     disabled={pageNumber === Number(page)}
                 >
                     {page}

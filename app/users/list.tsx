@@ -26,7 +26,7 @@ export const UsersList = ({ users: list }: ListProps) => {
         pageSize,
         setPageSize,
         sortData,
-    } = usePage(list);
+    } = usePage(list, "users");
 
     return (
         <>

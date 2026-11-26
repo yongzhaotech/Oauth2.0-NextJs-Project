@@ -26,7 +26,7 @@ export const AdList = ({ ads: list }: ListProps) => {
         pageSize,
         setPageSize,
         sortData,
-    } = usePage(list);
+    } = usePage(list, "ads");
 
     return (
         <>
