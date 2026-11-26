@@ -1,10 +1,11 @@
-import { useState, useMemo, useDeferredValue, use } from "react";
+import { useState, useMemo, useEffect, use } from "react";
 import { pagination } from "@/utils/helper";
 import { useSorting } from "@/hooks/sort-hook";
 import { browser } from "react-dom";
 
 const defaultPageNumber = 1;
 const defaultPageSize = 5;
+const searchDebounceMs = 300;
 const allowedPageSizes = [5, 10, 15, 20, 25] as const;
 
 const parsePositiveSafeInteger = (value: string | null): number | null => {
@@ -54,16 +55,26 @@ export const usePage = <T,>(data: T[], resourceName: string, searchField?: keyof
     const [pageNumber, _setPageNumber] = useState(pageStorage.getPageNumber);
     const [pageSize, _setPageSize] = useState<number>(pageStorage.getPageSize);
     const [search, _setSearch] = useState("");
-    const deferredSearch = useDeferredValue(search);
+    const [debouncedSearch, setDebouncedSearch] = useState(search);
+
+    useEffect(() => {
+        const timeoutId = window.setTimeout(() => {
+            setDebouncedSearch(search);
+        }, searchDebounceMs);
+
+        return () => window.clearTimeout(timeoutId);
+    }, [search]);
+
+    const normalizedSearch = debouncedSearch.trim().toLowerCase();
 
     const { sortedData, sortData } = useSorting(data);
 
     const filteredData = useMemo(() => {
-        if (!searchField || !deferredSearch) return sortedData;
+        if (!searchField || !normalizedSearch) return sortedData;
         return sortedData.filter(item =>
-            String(item[searchField] ?? "").toLowerCase().includes(deferredSearch.toLowerCase())
+            String(item[searchField] ?? "").toLowerCase().includes(normalizedSearch)
         );
-    }, [sortedData, deferredSearch, searchField]);
+    }, [sortedData, normalizedSearch, searchField]);
 
     const paginatedData = useMemo(() => {
         return pagination(filteredData, pageSize);

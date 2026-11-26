@@ -57,7 +57,7 @@ export const Table = <T,>({
                         value={clientSearch.value}
                         className="border border-gray-300 px-2 py-1"
                         onChange={(e) =>
-                            clientSearch.search(e.target.value.trim())
+                            clientSearch.search(e.target.value)
                         }
                     />
                 </div>
