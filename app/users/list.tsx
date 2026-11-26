@@ -27,7 +27,8 @@ export const UsersList = ({ users: list }: ListProps) => {
         pageSize,
         setPageSize,
         sortData,
-    } = usePage(list, "users");
+        clientSearch,
+    } = usePage(list, "users", "email");
 
     return (
         <>
@@ -42,7 +43,12 @@ export const UsersList = ({ users: list }: ListProps) => {
                 pages={pages}
             />
             <div className="overflow-x-auto">
-                <Table columns={columns} data={users} sortData={sortData} />
+                <Table
+                    columns={columns}
+                    data={users}
+                    sortData={sortData}
+                    clientSearch={clientSearch}
+                />
             </div>
         </>
     );

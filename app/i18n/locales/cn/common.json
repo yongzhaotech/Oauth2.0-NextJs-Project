@@ -9,6 +9,7 @@
     "backToAds": "返回广告",
     "notAllowed": "您无权访问此页面。",
     "pageSize": "每页 {{size}} 条",
+    "search": "搜索...",
     "adsTable": {
         "id": "ID",
         "name": "名称",

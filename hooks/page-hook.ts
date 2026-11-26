@@ -1,4 +1,4 @@
-import { useState, useMemo, use } from "react";
+import { useState, useMemo, useDeferredValue, use } from "react";
 import { pagination } from "@/utils/helper";
 import { useSorting } from "@/hooks/sort-hook";
 import { browser } from "react-dom";
@@ -48,17 +48,26 @@ const storage = (resourceName: string) => ({
     },
 });
 
-export const usePage = <T,>(data: T[], resourceName: string) => {
+export const usePage = <T,>(data: T[], resourceName: string, searchField?: keyof T) => {
     use(browser());
     const pageStorage = storage(resourceName);
     const [pageNumber, _setPageNumber] = useState(pageStorage.getPageNumber);
     const [pageSize, _setPageSize] = useState<number>(pageStorage.getPageSize);
+    const [search, _setSearch] = useState("");
+    const deferredSearch = useDeferredValue(search);
 
     const { sortedData, sortData } = useSorting(data);
 
+    const filteredData = useMemo(() => {
+        if (!searchField || !deferredSearch) return sortedData;
+        return sortedData.filter(item =>
+            String(item[searchField] ?? "").toLowerCase().includes(deferredSearch.toLowerCase())
+        );
+    }, [sortedData, deferredSearch, searchField]);
+
     const paginatedData = useMemo(() => {
-        return pagination(sortedData, pageSize);
-    }, [sortedData, pageSize]);
+        return pagination(filteredData, pageSize);
+    }, [filteredData, pageSize]);
 
     const pages = Object.keys(paginatedData);
     // The saved page can outlive the data set. Clamp it so the table does not
@@ -76,6 +85,11 @@ export const usePage = <T,>(data: T[], resourceName: string) => {
         pageStorage.setPageSize(nextPageSize);
     };
 
+    const setSearch = (value: string) => {
+        _setSearch(value);
+        setPageNumber(1);
+    };
+
     const list = paginatedData[currentPage] ?? [];
 
     return {
@@ -84,6 +98,7 @@ export const usePage = <T,>(data: T[], resourceName: string) => {
         pageSize,
         setPageSize,
         sortData,
+        clientSearch: { search: setSearch, value: search },
         data: list,
         pages
     };

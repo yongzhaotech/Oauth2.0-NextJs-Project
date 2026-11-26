@@ -9,6 +9,7 @@
     "backToAds": "Back to Advertisements",
     "notAllowed": "You are not allowed to access this page.",
     "pageSize": "Page size {{size}}",
+    "search": "Search...",
     "adsTable": {
         "id": "ID",
         "name": "Name",
