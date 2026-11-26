@@ -1,14 +1,17 @@
 "use client";
 
 import Link from "next/link";
-import { useT } from "next-i18next/client";
 import { Ad, User, Column } from "@/types";
 
 type TableProps<T = Ad | User> = {
     columns: Column<T>[];
     data: T[];
     sortData: (field: keyof T) => void;
-    clientSearch?: { search: (value: string) => void; value: string };
+    clientSearch?: {
+        search: (value: string) => void;
+        value: string;
+        filterText: string;
+    };
 };
 
 const Header = <T,>({
@@ -45,20 +48,17 @@ export const Table = <T,>({
     sortData,
     clientSearch,
 }: TableProps<T>) => {
-    const { t } = useT("common");
-
     return (
         <>
             {clientSearch && (
                 <div className="mb-4">
                     <input
                         type="text"
-                        placeholder={t("search")}
+                        name="filter"
+                        placeholder={clientSearch.filterText}
                         value={clientSearch.value}
                         className="border border-gray-300 px-2 py-1"
-                        onChange={(e) =>
-                            clientSearch.search(e.target.value)
-                        }
+                        onChange={(e) => clientSearch.search(e.target.value)}
                     />
                 </div>
             )}

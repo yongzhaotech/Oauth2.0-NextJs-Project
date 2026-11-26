@@ -1,11 +1,12 @@
-import { useState, useMemo, useEffect, use } from "react";
+import { useState, useMemo, use } from "react";
 import { pagination } from "@/utils/helper";
 import { useSorting } from "@/hooks/sort-hook";
+import { useDebounce } from "@/hooks/debounce-hook";
 import { browser } from "react-dom";
 
 const defaultPageNumber = 1;
 const defaultPageSize = 5;
-const searchDebounceMs = 300;
+const searchDebounceMs = 800;
 const allowedPageSizes = [5, 10, 15, 20, 25] as const;
 
 const parsePositiveSafeInteger = (value: string | null): number | null => {
@@ -57,13 +58,9 @@ export const usePage = <T,>(data: T[], resourceName: string, searchField?: keyof
     const [search, _setSearch] = useState("");
     const [debouncedSearch, setDebouncedSearch] = useState(search);
 
-    useEffect(() => {
-        const timeoutId = window.setTimeout(() => {
-            setDebouncedSearch(search);
-        }, searchDebounceMs);
-
-        return () => window.clearTimeout(timeoutId);
-    }, [search]);
+    useDebounce(() => {
+        setDebouncedSearch(search);
+    }, searchDebounceMs);
 
     const normalizedSearch = debouncedSearch.trim().toLowerCase();
 

@@ -18,6 +18,7 @@ const Header = ({ nums }: { nums: number }) => {
 };
 
 export const UsersList = ({ users: list }: ListProps) => {
+    const { t } = useT("common");
     const columns = useUsersTableColumns();
     const {
         data: users,
@@ -47,7 +48,10 @@ export const UsersList = ({ users: list }: ListProps) => {
                     columns={columns}
                     data={users}
                     sortData={sortData}
-                    clientSearch={clientSearch}
+                    clientSearch={{
+                        ...clientSearch,
+                        filterText: t("usersTable.search"),
+                    }}
                 />
             </div>
         </>

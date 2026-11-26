@@ -9,7 +9,6 @@
     "backToAds": "Retour aux annonces",
     "notAllowed": "Vous n'êtes pas autorisé à accéder à cette page.",
     "pageSize": "Taille de page {{size}}",
-    "search": "Recherche...",
     "adsTable": {
         "id": "ID",
         "name": "Nom",
@@ -19,7 +18,8 @@
         "contactPhone": "Téléphone de contact",
         "createTime": "Date de création",
         "notAvailable": "Non disponible",
-        "pageSize": "Taille de page {{size}}"
+        "pageSize": "Taille de page {{size}}",
+        "search": "Filtrer par nom..."
     },
     "details": {
         "title": "Détails de l'annonce",
@@ -46,7 +46,8 @@
         "signinCount": "Nombre de connexions",
         "notAvailable": "Non disponible",
         "pageSize": "{{size}} utilisateurs/page",
-        "title": "Utilisateurs"
+        "title": "Utilisateurs",
+        "search": "Filtrer par email..."
     },
     "userDetails": {
         "title": "Détails de l'utilisateur",

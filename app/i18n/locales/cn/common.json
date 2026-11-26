@@ -9,7 +9,6 @@
     "backToAds": "返回广告",
     "notAllowed": "您无权访问此页面。",
     "pageSize": "每页 {{size}} 条",
-    "search": "搜索...",
     "adsTable": {
         "id": "ID",
         "name": "名称",
@@ -19,7 +18,8 @@
         "contactPhone": "联系电话",
         "createTime": "创建时间",
         "notAvailable": "不可用",
-        "pageSize": "每页 {{size}} 条"
+        "pageSize": "每页 {{size}} 条",
+        "search": "按名称筛选..."
     },
     "details": {
         "title": "广告详情",
@@ -46,7 +46,8 @@
         "signinCount": "登录次数",
         "notAvailable": "不可用",
         "pageSize": "每页 {{size}} 用户",
-        "title": "用户"
+        "title": "用户",
+        "search": "按邮箱筛选..."
     },
     "userDetails": {
         "title": "用户详情",

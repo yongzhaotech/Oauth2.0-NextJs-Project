@@ -9,7 +9,6 @@
     "backToAds": "Back to Advertisements",
     "notAllowed": "You are not allowed to access this page.",
     "pageSize": "Page size {{size}}",
-    "search": "Search...",
     "adsTable": {
         "id": "ID",
         "name": "Name",
@@ -19,7 +18,8 @@
         "contactPhone": "Contact Phone",
         "createTime": "Created Time",
         "notAvailable": "Not Available",
-        "pageSize": "Page size {{size}}"
+        "pageSize": "Page size {{size}}",
+        "search": "Filter by name..."
     },
     "details": {
         "title": "Advertise details",
@@ -46,7 +46,8 @@
         "signinCount": "Sign-in Count",
         "notAvailable": "Not Available",
         "pageSize": "{{size}} users/page",
-        "title": "Users"
+        "title": "Users",
+        "search": "Filter by email..."
     },
     "userDetails": {
         "title": "User details",

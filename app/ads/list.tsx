@@ -18,6 +18,7 @@ const Header = ({ nums }: { nums: number }) => {
 };
 
 export const AdList = ({ ads: list }: ListProps) => {
+    const { t } = useT("common");
     const columns = useAdsTableColumns();
     const {
         data: ads,
@@ -47,7 +48,10 @@ export const AdList = ({ ads: list }: ListProps) => {
                     columns={columns}
                     data={ads}
                     sortData={sortData}
-                    clientSearch={clientSearch}
+                    clientSearch={{
+                        ...clientSearch,
+                        filterText: t("adsTable.search"),
+                    }}
                 />
             </div>
         </>
