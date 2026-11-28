@@ -43,13 +43,13 @@ Configure these server-side environment variables for the Next.js app:
 
 ```env
 OIDC_CLIENT_ID=nextjs-project
-OIDC_AUTHORITY=https://auth.localhost
-OIDC_REDIRECT_URI=https://app.localhost/api/auth/callback
+OIDC_AUTHORITY=https://auth.app.test
+OIDC_REDIRECT_URI=https://nextjs.app.test/api/auth/callback
 OIDC_RESPONSE_TYPE=code
 OIDC_SCOPE=openid profile email api.read access_level
 ```
 
-`OIDC_REDIRECT_URI` must exactly match a URI allowed for `nextjs-project` in the IDP. The local IDP is configured for `https://app.localhost/api/auth/callback` in `module/oidc-provider.ts of NodeJs---esaleshome.com`. Use HTTPS and the matching public callback URI outside local development.
+`OIDC_REDIRECT_URI` must exactly match a URI allowed for `nextjs-project` in the IDP. The local IDP is configured for `https://nextjs.app.test/api/auth/callback` in `module/oidc-provider.ts of NodeJs---esaleshome.com`. Use HTTPS and the matching public callback URI outside local development.
 
 nginx:
 
@@ -90,3 +90,41 @@ start .\nginx.exe
 
 # Verify Nginx is Running
 tasklist | grep -i nginx
+
+# cd C:\nginx-1.31.10\conf
+mkcert localhost nextjs.app.test auth.app.test react.app.test 127.0.0.1
+
+### PM2 and Nginx to auto-start on Windows boot
+    - Install NSSM (run in Windows Command Prompt cmd.exe or PowerShell):
+    winget install NSSM.NSSM
+    - Stop your manually running Nginx instance so the new service can bind to ports 80 and 443 cleanly:
+    taskkill /F /IM nginx.exe
+    - Register and start the Nginx Windows Service (in Administrator Command Prompt / PowerShell):
+    nssm install NginxService "C:\nginx-1.31.10\nginx.exe"
+    nssm set NginxService AppDirectory "C:\nginx-1.31.10"
+    nssm set NginxService Start SERVICE_AUTO_START
+    nssm start NginxService
+    - Verify it's running
+    nssm status NginxService
+    - nssm restart NginxService from an Admin terminal whenever nginx.conf is editted
+
+### Auto-Start PM2 & Node Apps on Windows Boot
+    -  pm2 start ./node_modules/next/dist/bin/next --name "nextjs-project" -- start -H 127.0.0.1 -p 3001
+    - Verify Next.js app (and Express/React apps, if managed by PM2) are online, port 3001
+    pm2 status
+    - Snapshot the running process list so PM2 knows what to restore on boot
+    pm2 save
+
+    - Install pm2-windows-startup to register PM2 on boot: Open Windows Command Prompt (cmd.exe) or PowerShell and run
+    npm install -g pm2-windows-startup
+    pm2-startup install
+
+### Add Express Auth Server (Port 88) to PM2
+    - npm run duild
+    - pm2 start ./dist/service.js --name "auth-server"
+
+### Add React App (esaleshome) (port 3000) to PM2
+    - npm run build
+    # Install 'serve' globally if not yet
+    - npm install -g serve
+    - pm2 start "$(npm root -g)/serve/build/main.js" --name "react-app" -- -s dist -l 3000
